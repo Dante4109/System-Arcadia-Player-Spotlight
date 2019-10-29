@@ -1,0 +1,42 @@
+{
+    "players": [
+        {
+            "id": 0,
+            "first": "Chris",
+            "last": "Chike",
+            "eamuse": "CORN",
+            "age": 32,
+            "pronouns": "Him,His",
+            "region": "SanFrancsio, CA",
+            "record": "Egoism 440",
+            "facts": "Is also a developer"
+        },
+
+        {
+            "id": 1,
+            "first": "Matt",
+            "last": "Magdon",
+            "eamuse": "MMAGDON",
+            "age": 26,
+            "pronouns": "Him,His",
+            "region": "Scranton, PA",
+            "record": "Over the period",
+            "facts": "Is also a sexual predator"
+        },
+
+        {
+            "id": 2,
+            "first": "Alex",
+            "last": "Idk",
+            "eamuse": "ITGALEX",
+            "age": 32,
+            "pronouns": "Him,His",
+            "region": "SanFrancsio, CA",
+            "record": "Egoism 440",
+            "facts": "Streams on twitch"
+        }
+    ]
+
+
+
+}
