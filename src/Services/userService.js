@@ -5,9 +5,7 @@ export default {
         
         try { 
             var baseURL
-            if(Number.isInteger(playerKey)) { baseURL = `?id=${playerKey}` } else { baseURL = `?eamuse=${playerKey}` };   
-            console.log(Number.isInteger(playerKey));
-            console.log(baseURL);
+            if(Number.isInteger(+playerKey)) { baseURL = `?id=${playerKey}` } else { baseURL = `?eamuse=${playerKey}` };   
             const response = await api.get(baseURL)
             return response.data
             
