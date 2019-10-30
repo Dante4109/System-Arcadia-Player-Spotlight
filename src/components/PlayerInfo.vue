@@ -1,69 +1,60 @@
 <template>
 <div>
     <h1>Player Info</h1>
-        <div v-if="dataReady">
-            <h2>First Name: {{ players[0].first }} </h2>
-            <h2>Last Name: {{ players[0].last }} </h2>
-            <h2>EAMUSE: {{ players[0].eamuse }} </h2>
-            <h2>Age: {{ players[0].age }} </h2>
-            <h2>Preffered Pronouns: {{ players[0].pronouns }} </h2>
-            <h2>Home Region: {{ players[0].region }} </h2>
-            <h2>Personal Best Record: {{ players[0].record }} </h2>
-            <h2>Fun Facts: {{ players[0].facts }} </h2>
-            <h2>{{id}}</h2>
+        <div v-if="player[0]">
+            <h2>First Name: {{ player[0].first }} </h2>
+            <h2>Last Name: {{ player[0].last }} </h2>
+            <h2>EAMUSE: {{ player[0].eamuse }} </h2>
+            <h2>Age: {{ player[0].age }} </h2>
+            <h2>Preffered Pronouns: {{ player[0].pronouns }} </h2>
+            <h2>Home Region: {{ player[0].region }} </h2>
+            <h2>Personal Best Record: {{ player[0].record }} </h2>
+            <h2>Fun Facts: {{ player[0].facts }} </h2>
+            <h2>{{player[0]}}</h2>
         </div>
 
-        <div v-if="!dataReady">
-            <h2>loading...</h2>
+        <div v-if="!player[0]">
+            <h2>Player not found</h2>
         </div>
 
     </div>    
 </template>
 
 <script>
-import PlayerStore from "../stores/PlayerStore"
-import axios from 'axios'
-
+import PlayerStore from "../stores/PlayerStore";
+import axios from 'axios';
+import api from '@/services/api';
+import userService from '@/services/userService';
 
 //const baseURL = 'https://api.coindesk.com/v1/bpi/currentprice.json';
-var baseURL = ('http://localhost:3000/players')
+
 export default {
        props: [
-           'id',
-           'eamuse',
+           'playerKey'
        ], 
         
         
         data()  {
             return {
-                dataReady: false,
-                players: [],
+                player: [],
             };
         },
-        
+    
     mounted() {
-        console.log()
-        this.getPlayer();
-    },
-    updated() {
-        this.getPlayer();
+        this.players = this.getPlayer(this.$props.playerKey);
     },
 
     methods: {
-        async getPlayer() {
-            try {
-                var num = this.$props.id
-                const res = await axios.get(baseURL + "?id=" + num);
+        async getPlayer(playerKey) {
+            const Player = await userService.fetchUser(playerKey)
+            this.player = Player 
+        }
+        
+    },
 
-                this.players = res.data;
-                console.log(num)
-                this.dataReady = true;
-                }
-                
-            catch (e) {
-                console.error(e);
-                this.dataReady = false
-            }
+    watch: {
+        $route(to, from) {
+            this.players = this.getPlayer(this.$props.playerKey);
         }
     },
 };

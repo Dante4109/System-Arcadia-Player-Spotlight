@@ -14,13 +14,7 @@ export default new Router({
         },
         
         {
-            path: '/players/',
-            name: 'PlayerInfo',
-            component: PlayerInfo
-        },
-
-        {
-            path: '/players/:id',
+            path: '/players/:playerKey',
             name: 'PlayerInfo',
             props: true,
             component: PlayerInfo
