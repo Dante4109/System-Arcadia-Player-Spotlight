@@ -10,7 +10,6 @@
             <h2>Home Region: {{ player[0].region }} </h2>
             <h2>Personal Best Record: {{ player[0].record }} </h2>
             <h2>Fun Facts: {{ player[0].facts }} </h2>
-            <h2>{{player[0]}}</h2>
         </div>
 
         <div v-if="!player[0]">
